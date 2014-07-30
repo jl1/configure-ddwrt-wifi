@@ -2,9 +2,8 @@
 # keepalive_bt.sh - Keepalive BT WiFi access
 # Usage: /bin/sh /tmp/keepalive_bt.sh username password
 
-BTUSER="${1-username}"
-BTPW="${2-password}"
-
+BTUSER="$(awk '$1 == "username" {value=$3; exit} END {print value}' "value=default" keepalive_bt.cfg)"
+BTPW="$(awk '$1 == "password" {value=$3; exit} END {print value}' "value=default" keepalive_bt.cfg)"
 BTLOGON_DATA="username=$BTUSER&password=$BTPW"
 BTLOGON_URL="https://192.168.23.21:8443/ante"
 BTLOGOFF_URL="https://192.168.23.21:8443/accountLogoff/Home"
