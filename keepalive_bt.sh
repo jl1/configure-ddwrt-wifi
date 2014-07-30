@@ -1,6 +1,7 @@
 #!/bin/sh
 # keepalive_bt.sh - Keepalive BT WiFi access
-# Usage: /bin/sh /tmp/keepalive_bt.sh username password
+# Edit values in keepalive_bt.cfg
+# Typically script is called by 1 min cron
 
 BTUSER="$(awk '$1 == "username" {value=$3; exit} END {print value}' "value=default" keepalive_bt.cfg)"
 BTPW="$(awk '$1 == "password" {value=$3; exit} END {print value}' "value=default" keepalive_bt.cfg)"
